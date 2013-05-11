@@ -1,3 +1,9 @@
 [submodule "html/typo3_src"]
 	path = html/typo3_src
 	url = git://git.typo3.org/TYPO3v4/Core.git
+[submodule "html/typo3conf/ext/phpunit"]
+	path = html/typo3conf/ext/phpunit
+	url = git://git.typo3.org/TYPO3v4/Extensions/phpunit.git
+[submodule "html/typo3conf/ext/coreapi"]
+	path = html/typo3conf/ext/coreapi
+	url = git://github.com/etobi/ext-coreapi.git
