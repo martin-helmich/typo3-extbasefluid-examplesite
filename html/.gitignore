@@ -1,0 +1,22 @@
+#########################
+# TYPO3v4/Distributions
+# global ignore file
+########################
+# for local exclude patterns please edit .git/info/exclude
+#
+*~
+*.bak
+*.idea
+*.project
+*.swp
+.buildpath
+.cache
+.project
+.session
+.settings
+.TemporaryItems
+.webprj
+nbproject
+.DS_Store
+Targets/
+Work/

@@ -1,0 +1,3 @@
+[submodule "html/typo3_src"]
+	path = html/typo3_src
+	url = git://git.typo3.org/TYPO3v4/Core.git
