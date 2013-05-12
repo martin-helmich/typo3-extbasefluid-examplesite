@@ -42,3 +42,8 @@ a2ensite vagrant
 /bin/chown vagrant:vagrant /var/log/apache2 -R
 
 /etc/init.d/apache2 restart
+
+MYSQL="mysql -uroot -psupersecret -ss"
+
+${MYSQL} -e 'CREATE DATABASE typo3 CHARSET utf8 COLLATE utf8_unicode_ci;'
+${MYSQL} -e 'GRANT ALL PRIVILEGES ON typo3.* TO typo3@localhost IDENTIFIED BY "typo3";'
