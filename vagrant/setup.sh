@@ -37,4 +37,8 @@ echo '<VirtualHost *:80>
 a2dissite default
 a2ensite vagrant
 
+/bin/sed -i 's,www-data,vagrant,g' /etc/apache2/envvars
+/bin/chown vagrant:vagrant /var/lock/apache2
+/bin/chown vagrant:vagrant /var/log/apache2 -R
+
 /etc/init.d/apache2 restart
