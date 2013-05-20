@@ -45,6 +45,8 @@ a2ensite vagrant
 
 MYSQL="mysql -uroot -psupersecret -ss"
 
-${MYSQL} -e 'CREATE DATABASE typo3 CHARSET utf8 COLLATE utf8_unicode_ci;'
-${MYSQL} -e 'GRANT ALL PRIVILEGES ON typo3.* TO typo3@localhost IDENTIFIED BY "typo3";'
-${MYSQL} < /vagrant/vagrant/setup.sql
+if ! ${MYSQL} -e 'SHOW DATABASES' | grep -q typo3 ; then
+	${MYSQL} -e 'CREATE DATABASE typo3 CHARSET utf8 COLLATE utf8_unicode_ci;'
+	${MYSQL} -e 'GRANT ALL PRIVILEGES ON typo3.* TO typo3@localhost IDENTIFIED BY "typo3";'
+	${MYSQL} typo3 < /vagrant/vagrant/setup.sql
+fi
