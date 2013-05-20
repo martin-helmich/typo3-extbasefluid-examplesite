@@ -10,6 +10,7 @@ page {
 	}
 
 	typeNum = 0
+	bodyTag = <body style="margin-top: 60px;">
 
 	10 = FLUIDTEMPLATE
 	10 {
