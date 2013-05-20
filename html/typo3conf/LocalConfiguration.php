@@ -15,6 +15,7 @@ return array(
 		'extConf' => array(
 			'coreapi' => 'a:0:{}',
 			'helmbert_bootstrapsite' => 'a:0:{}',
+			'inventory' => 'a:0:{}',
 			'phpunit' => 'a:6:{s:17:"excludeextensions";s:8:"lib, div";s:10:"phpunitlib";s:0:"";s:13:"selenium_host";s:9:"localhost";s:13:"selenium_port";s:4:"4444";s:16:"selenium_browser";s:8:"*firefox";s:19:"selenium_browserurl";s:0:"";}',
 			'saltedpasswords' => 'a:2:{s:3:"FE.";a:2:{s:7:"enabled";s:1:"1";s:21:"saltedPWHashingMethod";s:28:"tx_saltedpasswords_salts_md5";}s:3:"BE.";a:2:{s:7:"enabled";s:1:"1";s:21:"saltedPWHashingMethod";s:28:"tx_saltedpasswords_salts_md5";}}',
 		),
@@ -59,6 +60,7 @@ return array(
 			'phpunit',
 			'coreapi',
 			'helmbert_bootstrapsite',
+			'inventory',
 		),
 	),
 	'FE' => array(
