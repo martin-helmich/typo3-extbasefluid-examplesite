@@ -1,6 +1,6 @@
 [submodule "html/typo3_src"]
 	path = html/typo3_src
-	url = git://git.typo3.org/TYPO3v4/Core.git
+	url = git://git.typo3.org/Packages/TYPO3.CMS.git
 [submodule "html/typo3conf/ext/phpunit"]
 	path = html/typo3conf/ext/phpunit
 	url = git://git.typo3.org/TYPO3v4/Extensions/phpunit.git
