@@ -13,6 +13,7 @@ return array(
 	),
 	'EXT' => array(
 		'extConf' => array(
+			'blog_example' => 'a:1:{s:20:"registerSinglePlugin";s:1:"1";}',
 			'coreapi' => 'a:0:{}',
 			'helmbert_bootstrapsite' => 'a:0:{}',
 			'inventory' => 'a:0:{}',
@@ -61,6 +62,7 @@ return array(
 			'coreapi',
 			'helmbert_bootstrapsite',
 			'inventory',
+			'blog_example',
 		),
 	),
 	'FE' => array(

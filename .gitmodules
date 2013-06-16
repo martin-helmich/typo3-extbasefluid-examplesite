@@ -7,3 +7,6 @@
 [submodule "html/typo3conf/ext/coreapi"]
 	path = html/typo3conf/ext/coreapi
 	url = git://github.com/etobi/ext-coreapi.git
+[submodule "html/typo3conf/ext/blog_example"]
+	path = html/typo3conf/ext/blog_example
+	url = git://git.typo3.org/TYPO3v4/CoreProjects/MVC/blog_example.git
