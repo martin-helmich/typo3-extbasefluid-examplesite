@@ -10,3 +10,6 @@
 [submodule "html/typo3conf/ext/blog_example"]
 	path = html/typo3conf/ext/blog_example
 	url = git://git.typo3.org/TYPO3v4/CoreProjects/MVC/blog_example.git
+[submodule "html/typo3conf/ext/extension_builder"]
+	path = html/typo3conf/ext/extension_builder
+	url = git://git.typo3.org/TYPO3v4/Extensions/extension_builder.git
