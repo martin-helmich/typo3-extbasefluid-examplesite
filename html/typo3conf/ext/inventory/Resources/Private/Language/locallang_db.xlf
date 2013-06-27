@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-06-27T11:39:41Z" product-name="inventory">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_inventory_domain_model_product">
+				<source>Product</source>
+			</trans-unit>
+			<trans-unit id="tx_inventory_domain_model_product.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_inventory_domain_model_product.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_inventory_domain_model_product.quantity">
+				<source>Quantity</source>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>
