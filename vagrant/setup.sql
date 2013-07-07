@@ -75,8 +75,10 @@ CREATE TABLE `be_groups` (
   `subgroup` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `hide_in_lists` tinyint(4) NOT NULL DEFAULT '0',
   `workspace_perms` tinyint(3) NOT NULL DEFAULT '1',
+  `tx_phpunit_is_dummy_record` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`),
-  KEY `parent` (`pid`)
+  KEY `parent` (`pid`),
+  KEY `phpunit_dummy` (`tx_phpunit_is_dummy_record`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -126,7 +128,7 @@ CREATE TABLE `be_users` (
   `crdate` int(11) unsigned NOT NULL DEFAULT '0',
   `cruser_id` int(11) unsigned NOT NULL DEFAULT '0',
   `realName` varchar(80) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `userMods` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `userMods` text COLLATE utf8_unicode_ci,
   `allowed_languages` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `uc` mediumtext COLLATE utf8_unicode_ci,
   `file_mountpoints` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
@@ -141,15 +143,17 @@ CREATE TABLE `be_users` (
   `usergroup_cached_list` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `workspace_id` int(11) NOT NULL DEFAULT '0',
   `workspace_preview` tinyint(3) NOT NULL DEFAULT '1',
+  `tx_phpunit_is_dummy_record` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`),
   KEY `parent` (`pid`),
-  KEY `username` (`username`)
+  KEY `username` (`username`),
+  KEY `phpunit_dummy` (`tx_phpunit_is_dummy_record`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `be_users` WRITE;
 /*!40000 ALTER TABLE `be_users` DISABLE KEYS */;
-INSERT INTO `be_users` VALUES (1,0,1368361205,'admin','5f4dcc3b5aa765d61d8327deb882cf99',1,'',0,0,0,'','','',0,1368361205,0,'','','','','',0,1,'',0,0,NULL,0,0,'',0,1);
+INSERT INTO `be_users` VALUES (1,0,1371236451,'mhelmich','$1$ybEMIhKp$JTq7rOkHhDWYJUxOrP7c40',1,'',0,0,0,'','','',0,1368361205,0,'','','','a:26:{s:14:\"interfaceSetup\";s:7:\"backend\";s:10:\"moduleData\";a:10:{s:10:\"web_layout\";a:2:{s:8:\"function\";s:1:\"1\";s:8:\"language\";s:1:\"0\";}s:6:\"web_ts\";a:6:{s:8:\"function\";s:89:\"TYPO3\\CMS\\TstemplateInfo\\Controller\\TypoScriptTemplateInformationModuleFunctionController\";s:19:\"constant_editor_cat\";s:14:\"internal notes\";s:15:\"ts_browser_type\";s:5:\"setup\";s:16:\"ts_browser_const\";s:1:\"0\";s:19:\"ts_browser_fixedLgd\";s:1:\"1\";s:23:\"ts_browser_showComments\";s:1:\"1\";}s:16:\"xMOD_alt_doc.php\";a:0:{}s:11:\"alt_doc.php\";a:2:{i:0;a:1:{s:32:\"029c05223c91389b8a9f94acbf80becc\";a:4:{i:0;s:19:\"<em>[No title]</em>\";i:1;a:7:{s:4:\"edit\";a:1:{s:10:\"tt_content\";a:1:{i:2;s:4:\"edit\";}}s:7:\"defVals\";a:1:{s:10:\"tt_content\";a:3:{s:6:\"colPos\";s:1:\"0\";s:16:\"sys_language_uid\";s:1:\"0\";s:5:\"CType\";s:4:\"list\";}}s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:7:\"disHelp\";N;s:6:\"noView\";N;s:24:\"editRegularContentFromId\";N;}i:2;s:197:\"&edit[tt_content][2]=edit&defVals[tt_content][colPos]=0&defVals[tt_content][sys_language_uid]=0&defVals[tt_content][CType]=list&overrideVals=&columnsOnly=&disHelp=&noView=&editRegularContentFromId=\";i:3;a:5:{s:5:\"table\";s:10:\"tt_content\";s:3:\"uid\";s:1:\"2\";s:3:\"pid\";s:1:\"3\";s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";i:1;}}}i:1;s:32:\"3d060a9d3682d4912a33490d22c78b13\";}s:57:\"TYPO3\\CMS\\Backend\\Utility\\BackendUtility::getUpdateSignal\";a:0:{}s:16:\"opendocs::recent\";a:4:{s:32:\"3d060a9d3682d4912a33490d22c78b13\";a:4:{i:0;s:15:\"Fliegenklatsche\";i:1;a:7:{s:4:\"edit\";a:1:{s:33:\"tx_inventory_domain_model_product\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:7:\"disHelp\";N;s:6:\"noView\";N;s:24:\"editRegularContentFromId\";N;}i:2;s:127:\"&edit[tx_inventory_domain_model_product][1]=edit&defVals=&overrideVals=&columnsOnly=&disHelp=&noView=&editRegularContentFromId=\";i:3;a:5:{s:5:\"table\";s:33:\"tx_inventory_domain_model_product\";s:3:\"uid\";s:1:\"1\";s:3:\"pid\";s:1:\"4\";s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";i:1;}}s:32:\"8f28f66c7fc666c419dfaf1b3bac8766\";a:4:{i:0;s:19:\"<em>[No title]</em>\";i:1;a:7:{s:4:\"edit\";a:1:{s:10:\"tt_content\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:7:\"disHelp\";N;s:6:\"noView\";N;s:24:\"editRegularContentFromId\";N;}i:2;s:104:\"&edit[tt_content][1]=edit&defVals=&overrideVals=&columnsOnly=&disHelp=&noView=&editRegularContentFromId=\";i:3;a:5:{s:5:\"table\";s:10:\"tt_content\";s:3:\"uid\";s:1:\"1\";s:3:\"pid\";s:1:\"3\";s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";i:1;}}s:32:\"99eb84e187fc30eeba3ec311ec622692\";a:4:{i:0;s:21:\"Default Root Template\";i:1;a:7:{s:4:\"edit\";a:1:{s:12:\"sys_template\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:7:\"disHelp\";N;s:6:\"noView\";N;s:24:\"editRegularContentFromId\";N;}i:2;s:106:\"&edit[sys_template][1]=edit&defVals=&overrideVals=&columnsOnly=&disHelp=&noView=&editRegularContentFromId=\";i:3;a:5:{s:5:\"table\";s:12:\"sys_template\";s:3:\"uid\";s:1:\"1\";s:3:\"pid\";s:1:\"1\";s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";i:1;}}s:32:\"b2a52a64aeabdfa079e0aca938cff05a\";a:4:{i:0;s:4:\"root\";i:1;a:7:{s:4:\"edit\";a:1:{s:5:\"pages\";a:1:{i:1;s:4:\"edit\";}}s:7:\"defVals\";N;s:12:\"overrideVals\";N;s:11:\"columnsOnly\";N;s:7:\"disHelp\";N;s:6:\"noView\";N;s:24:\"editRegularContentFromId\";N;}i:2;s:99:\"&edit[pages][1]=edit&defVals=&overrideVals=&columnsOnly=&disHelp=&noView=&editRegularContentFromId=\";i:3;a:5:{s:5:\"table\";s:5:\"pages\";s:3:\"uid\";s:1:\"1\";s:3:\"pid\";s:1:\"0\";s:3:\"cmd\";s:4:\"edit\";s:12:\"deleteAccess\";i:1;}}}s:13:\"tools_install\";a:1:{s:8:\"function\";s:0:\"\";}s:8:\"web_list\";a:0:{}s:9:\"menuState\";a:5:{s:13:\"modmenu_tools\";i:1;s:11:\"modmenu_web\";i:0;s:12:\"modmenu_file\";i:1;s:12:\"modmenu_help\";i:1;s:12:\"modmenu_user\";i:1;}s:16:\"extensionbuilder\";a:1:{s:9:\"firstTime\";i:0;}}s:19:\"thumbnailsByDefault\";i:1;s:14:\"emailMeAtLogin\";i:0;s:13:\"condensedMode\";i:0;s:10:\"noMenuMode\";i:0;s:11:\"startModule\";s:17:\"help_aboutmodules\";s:18:\"hideSubmoduleIcons\";i:0;s:8:\"helpText\";i:1;s:8:\"titleLen\";i:50;s:17:\"edit_wideDocument\";s:1:\"0\";s:18:\"edit_showFieldHelp\";s:4:\"icon\";s:8:\"edit_RTE\";s:1:\"1\";s:20:\"edit_docModuleUpload\";s:1:\"1\";s:13:\"navFrameWidth\";s:0:\"\";s:17:\"navFrameResizable\";i:0;s:15:\"resizeTextareas\";i:1;s:25:\"resizeTextareas_MaxHeight\";i:500;s:24:\"resizeTextareas_Flexible\";i:0;s:4:\"lang\";s:0:\"\";s:19:\"firstLoginTimeStamp\";i:1368361606;s:17:\"BackendComponents\";a:1:{s:6:\"States\";a:3:{s:19:\"typo3-debug-console\";O:8:\"stdClass\":1:{s:9:\"collapsed\";b:1;}s:8:\"Pagetree\";O:8:\"stdClass\":1:{s:9:\"stateHash\";O:8:\"stdClass\":4:{s:1:\"0\";i:1;s:1:\"1\";i:1;s:4:\"root\";i:1;s:16:\"lastSelectedNode\";s:2:\"p4\";}}s:25:\"typo3-navigationContainer\";O:8:\"stdClass\":2:{s:9:\"collapsed\";b:0;s:5:\"width\";i:184;}}}s:15:\"moduleSessionID\";a:9:{s:10:\"web_layout\";s:32:\"5e760191e96d901e956fe8505a22925c\";s:6:\"web_ts\";s:32:\"5bda1ca190e1f34f368070b4cf1111c9\";s:16:\"xMOD_alt_doc.php\";s:32:\"69cb952c53cb88a481140447bc1069fe\";s:11:\"alt_doc.php\";s:32:\"328ddad928d4731faea7193b3214a357\";s:57:\"TYPO3\\CMS\\Backend\\Utility\\BackendUtility::getUpdateSignal\";s:32:\"328ddad928d4731faea7193b3214a357\";s:16:\"opendocs::recent\";s:32:\"328ddad928d4731faea7193b3214a357\";s:13:\"tools_install\";s:32:\"328ddad928d4731faea7193b3214a357\";s:8:\"web_list\";s:32:\"0ffcf18209cecaaec2437f06239f5488\";s:16:\"extensionbuilder\";s:32:\"328ddad928d4731faea7193b3214a357\";}s:18:\"disablePMKTextarea\";i:1;s:7:\"reports\";a:2:{s:9:\"selection\";a:2:{s:9:\"extension\";s:10:\"tx_reports\";s:6:\"report\";s:6:\"status\";}s:6:\"states\";a:8:{s:12:\"TYPO3-System\";N;s:6:\"System\";N;s:8:\"Security\";N;s:13:\"Configuration\";N;s:17:\"Extension-Manager\";N;s:7:\"PHPUnit\";i:0;s:7:\"extbase\";N;s:12:\"htmlArea-RTE\";N;}}s:8:\"tcaTrees\";a:1:{s:32:\"d2e1133f7858a3957716afd25af53d72\";i:0;}}','',0,1,'',0,0,NULL,1372582226,0,'',0,1,0);
 /*!40000 ALTER TABLE `be_users` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `cache_imagesizes`;
@@ -229,12 +233,11 @@ CREATE TABLE `cf_cache_hash` (
   `content` mediumblob,
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`,`expires`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `cf_cache_hash` WRITE;
 /*!40000 ALTER TABLE `cf_cache_hash` DISABLE KEYS */;
-INSERT INTO `cf_cache_hash` VALUES (1,'1da12b83b2bbeac1bf1fd4fb79796c46',2145909600,'s:9933:\"a:7:{s:7:\"config.\";a:3:{s:9:\"extTarget\";s:4:\"_top\";s:14:\"uniqueLinkVars\";i:1;s:11:\"tx_extbase.\";a:4:{s:4:\"mvc.\";a:2:{s:16:\"requestHandlers.\";a:4:{s:48:\"TYPO3\\CMS\\Extbase\\Mvc\\Web\\FrontendRequestHandler\";s:48:\"TYPO3\\CMS\\Extbase\\Mvc\\Web\\FrontendRequestHandler\";s:47:\"TYPO3\\CMS\\Extbase\\Mvc\\Web\\BackendRequestHandler\";s:47:\"TYPO3\\CMS\\Extbase\\Mvc\\Web\\BackendRequestHandler\";s:40:\"TYPO3\\CMS\\Extbase\\Mvc\\Cli\\RequestHandler\";s:40:\"TYPO3\\CMS\\Extbase\\Mvc\\Cli\\RequestHandler\";s:48:\"TYPO3\\CMS\\Fluid\\Core\\Widget\\WidgetRequestHandler\";s:48:\"TYPO3\\CMS\\Fluid\\Core\\Widget\\WidgetRequestHandler\";}s:48:\"throwPageNotFoundExceptionIfActionCantBeResolved\";s:1:\"0\";}s:12:\"persistence.\";a:3:{s:28:\"enableAutomaticCacheClearing\";s:1:\"1\";s:20:\"updateReferenceIndex\";s:1:\"0\";s:8:\"classes.\";a:9:{s:41:\"TYPO3\\CMS\\Extbase\\Domain\\Model\\FileMount.\";a:1:{s:8:\"mapping.\";a:2:{s:9:\"tableName\";s:14:\"sys_filemounts\";s:8:\"columns.\";a:3:{s:6:\"title.\";a:1:{s:13:\"mapOnProperty\";s:5:\"title\";}s:5:\"path.\";a:1:{s:13:\"mapOnProperty\";s:4:\"path\";}s:5:\"base.\";a:1:{s:13:\"mapOnProperty\";s:14:\"isAbsolutePath\";}}}}s:45:\"TYPO3\\CMS\\Extbase\\Domain\\Model\\FileReference.\";a:1:{s:8:\"mapping.\";a:1:{s:9:\"tableName\";s:18:\"sys_file_reference\";}}s:36:\"TYPO3\\CMS\\Extbase\\Domain\\Model\\File.\";a:1:{s:8:\"mapping.\";a:1:{s:9:\"tableName\";s:8:\"sys_file\";}}s:43:\"TYPO3\\CMS\\Extbase\\Domain\\Model\\BackendUser.\";a:1:{s:8:\"mapping.\";a:2:{s:9:\"tableName\";s:8:\"be_users\";s:8:\"columns.\";a:8:{s:9:\"username.\";a:1:{s:13:\"mapOnProperty\";s:8:\"userName\";}s:6:\"admin.\";a:1:{s:13:\"mapOnProperty\";s:15:\"isAdministrator\";}s:8:\"disable.\";a:1:{s:13:\"mapOnProperty\";s:10:\"isDisabled\";}s:9:\"realName.\";a:1:{s:13:\"mapOnProperty\";s:8:\"realName\";}s:10:\"starttime.\";a:1:{s:13:\"mapOnProperty\";s:16:\"startDateAndTime\";}s:8:\"endtime.\";a:1:{s:13:\"mapOnProperty\";s:14:\"endDateAndTime\";}s:14:\"disableIPlock.\";a:1:{s:13:\"mapOnProperty\";s:16:\"ipLockIsDisabled\";}s:10:\"lastlogin.\";a:1:{s:13:\"mapOnProperty\";s:20:\"lastLoginDateAndTime\";}}}}s:48:\"TYPO3\\CMS\\Extbase\\Domain\\Model\\BackendUserGroup.\";a:1:{s:8:\"mapping.\";a:2:{s:9:\"tableName\";s:9:\"be_groups\";s:8:\"columns.\";a:14:{s:9:\"subgroup.\";a:1:{s:13:\"mapOnProperty\";s:9:\"subGroups\";}s:10:\"groupMods.\";a:1:{s:13:\"mapOnProperty\";s:7:\"modules\";}s:14:\"tables_select.\";a:1:{s:13:\"mapOnProperty\";s:15:\"tablesListening\";}s:14:\"tables_modify.\";a:1:{s:13:\"mapOnProperty\";s:12:\"tablesModify\";}s:17:\"pagetypes_select.\";a:1:{s:13:\"mapOnProperty\";s:9:\"pageTypes\";}s:19:\"non_exclude_fields.\";a:1:{s:13:\"mapOnProperty\";s:20:\"allowedExcludeFields\";}s:19:\"explicit_allowdeny.\";a:1:{s:13:\"mapOnProperty\";s:22:\"explicitlyAllowAndDeny\";}s:18:\"allowed_languages.\";a:1:{s:13:\"mapOnProperty\";s:16:\"allowedLanguages\";}s:16:\"workspace_perms.\";a:1:{s:13:\"mapOnProperty\";s:19:\"workspacePermission\";}s:15:\"db_mountpoints.\";a:1:{s:13:\"mapOnProperty\";s:14:\"databaseMounts\";}s:15:\"fileoper_perms.\";a:1:{s:13:\"mapOnProperty\";s:24:\"fileOperationPermissions\";}s:13:\"lockToDomain.\";a:1:{s:13:\"mapOnProperty\";s:12:\"lockToDomain\";}s:14:\"hide_in_lists.\";a:1:{s:13:\"mapOnProperty\";s:10:\"hideInList\";}s:9:\"TSconfig.\";a:1:{s:13:\"mapOnProperty\";s:8:\"tsConfig\";}}}}s:44:\"TYPO3\\CMS\\Extbase\\Domain\\Model\\FrontendUser.\";a:1:{s:8:\"mapping.\";a:2:{s:9:\"tableName\";s:8:\"fe_users\";s:8:\"columns.\";a:1:{s:13:\"lockToDomain.\";a:1:{s:13:\"mapOnProperty\";s:12:\"lockToDomain\";}}}}s:49:\"TYPO3\\CMS\\Extbase\\Domain\\Model\\FrontendUserGroup.\";a:1:{s:8:\"mapping.\";a:2:{s:9:\"tableName\";s:9:\"fe_groups\";s:8:\"columns.\";a:1:{s:13:\"lockToDomain.\";a:1:{s:13:\"mapOnProperty\";s:12:\"lockToDomain\";}}}}s:40:\"TYPO3\\CMS\\Extbase\\Domain\\Model\\Category.\";a:1:{s:8:\"mapping.\";a:1:{s:9:\"tableName\";s:12:\"sys_category\";}}s:39:\"TYPO3\\CMS\\SysNote\\Domain\\Model\\SysNote.\";a:1:{s:8:\"mapping.\";a:3:{s:9:\"tableName\";s:8:\"sys_note\";s:10:\"recordType\";s:0:\"\";s:8:\"columns.\";a:3:{s:7:\"crdate.\";a:1:{s:13:\"mapOnProperty\";s:12:\"creationDate\";}s:7:\"tstamp.\";a:1:{s:13:\"mapOnProperty\";s:16:\"modificationDate\";}s:7:\"cruser.\";a:1:{s:13:\"mapOnProperty\";s:6:\"author\";}}}}}}s:9:\"features.\";a:3:{s:23:\"rewrittenPropertyMapper\";s:1:\"1\";s:20:\"skipDefaultArguments\";s:1:\"0\";s:25:\"ignoreAllEnableFieldsInBe\";s:1:\"0\";}s:7:\"legacy.\";a:1:{s:32:\"enableLegacyFlashMessageHandling\";s:1:\"1\";}}}s:7:\"plugin.\";a:2:{s:14:\"tx_felogin_pi1\";s:8:\"USER_INT\";s:15:\"tx_felogin_pi1.\";a:49:{s:11:\"includeLibs\";s:40:\"EXT:felogin/pi1/class.tx_felogin_pi1.php\";s:8:\"userFunc\";s:20:\"tx_felogin_pi1->main\";s:10:\"storagePid\";s:31:\"{$styles.content.loginform.pid}\";s:9:\"recursive\";s:0:\"\";s:12:\"templateFile\";s:40:\"{$styles.content.loginform.templateFile}\";s:14:\"feloginBaseURL\";s:0:\"\";s:22:\"wrapContentInBaseClass\";s:1:\"1\";s:11:\"linkConfig.\";a:2:{s:6:\"target\";s:0:\"\";s:10:\"ATagParams\";s:14:\"rel=\"nofollow\"\";}s:15:\"preserveGETvars\";s:3:\"all\";s:22:\"showForgotPasswordLink\";s:0:\"\";s:14:\"showPermaLogin\";s:0:\"\";s:23:\"forgotLinkHashValidTime\";s:2:\"12\";s:20:\"newPasswordMinLength\";s:1:\"6\";s:22:\"welcomeHeader_stdWrap.\";a:1:{s:4:\"wrap\";s:10:\"<h3>|</h3>\";}s:23:\"welcomeMessage_stdWrap.\";a:1:{s:4:\"wrap\";s:12:\"<div>|</div>\";}s:22:\"successHeader_stdWrap.\";a:1:{s:4:\"wrap\";s:10:\"<h3>|</h3>\";}s:23:\"successMessage_stdWrap.\";a:1:{s:4:\"wrap\";s:12:\"<div>|</div>\";}s:21:\"logoutHeader_stdWrap.\";a:1:{s:4:\"wrap\";s:10:\"<h3>|</h3>\";}s:22:\"logoutMessage_stdWrap.\";a:1:{s:4:\"wrap\";s:12:\"<div>|</div>\";}s:20:\"errorHeader_stdWrap.\";a:1:{s:4:\"wrap\";s:10:\"<h3>|</h3>\";}s:21:\"errorMessage_stdWrap.\";a:1:{s:4:\"wrap\";s:12:\"<div>|</div>\";}s:21:\"forgotHeader_stdWrap.\";a:1:{s:4:\"wrap\";s:10:\"<h3>|</h3>\";}s:22:\"forgotMessage_stdWrap.\";a:1:{s:4:\"wrap\";s:12:\"<div>|</div>\";}s:27:\"forgotErrorMessage_stdWrap.\";a:1:{s:4:\"wrap\";s:12:\"<div>|</div>\";}s:43:\"forgotResetMessageEmailSentMessage_stdWrap.\";a:1:{s:4:\"wrap\";s:12:\"<div>|</div>\";}s:38:\"changePasswordNotValidMessage_stdWrap.\";a:1:{s:4:\"wrap\";s:12:\"<div>|</div>\";}s:38:\"changePasswordTooShortMessage_stdWrap.\";a:1:{s:4:\"wrap\";s:12:\"<div>|</div>\";}s:38:\"changePasswordNotEqualMessage_stdWrap.\";a:1:{s:4:\"wrap\";s:12:\"<div>|</div>\";}s:29:\"changePasswordHeader_stdWrap.\";a:1:{s:4:\"wrap\";s:10:\"<h3>|</h3>\";}s:30:\"changePasswordMessage_stdWrap.\";a:1:{s:4:\"wrap\";s:12:\"<div>|</div>\";}s:34:\"changePasswordDoneMessage_stdWrap.\";a:1:{s:4:\"wrap\";s:12:\"<div>|</div>\";}s:22:\"cookieWarning_stdWrap.\";a:1:{s:4:\"wrap\";s:45:\"<p style=\"color:red; font-weight:bold;\">|</p>\";}s:11:\"userfields.\";a:1:{s:9:\"username.\";a:2:{s:16:\"htmlSpecialChars\";s:1:\"1\";s:4:\"wrap\";s:18:\"<strong>|</strong>\";}}s:12:\"redirectMode\";s:0:\"\";s:19:\"redirectFirstMethod\";s:0:\"\";s:17:\"redirectPageLogin\";s:0:\"\";s:22:\"redirectPageLoginError\";s:0:\"\";s:18:\"redirectPageLogout\";s:0:\"\";s:15:\"redirectDisable\";s:0:\"\";s:10:\"email_from\";s:0:\"\";s:14:\"email_fromName\";s:0:\"\";s:7:\"replyTo\";s:0:\"\";s:7:\"domains\";s:0:\"\";s:24:\"showLogoutFormAfterLogin\";s:0:\"\";s:10:\"dateFormat\";s:9:\"Y-m-d H:i\";s:43:\"exposeNonexistentUserInForgotPasswordDialog\";s:1:\"0\";s:18:\"_CSS_DEFAULT_STYLE\";s:45:\"	.tx-felogin-pi1 label {\n		display: block;\n	}\";s:12:\"_LOCAL_LANG.\";a:1:{s:8:\"default.\";a:0:{}}s:17:\"_DEFAULT_PI_VARS.\";a:0:{}}}s:7:\"module.\";a:4:{s:20:\"tx_extensionmanager.\";a:2:{s:9:\"settings.\";a:1:{s:13:\"repositoryUid\";s:1:\"1\";}s:9:\"features.\";a:1:{s:20:\"skipDefaultArguments\";s:1:\"0\";}}s:11:\"tx_sysnote.\";a:1:{s:5:\"view.\";a:3:{s:14:\"layoutRootPath\";s:39:\"EXT:sys_note/Resources/Private/Layouts/\";s:16:\"templateRootPath\";s:41:\"EXT:sys_note/Resources/Private/Templates/\";s:15:\"partialRootPath\";s:40:\"EXT:sys_note/Resources/Private/Partials/\";}}s:9:\"tx_belog.\";a:2:{s:12:\"persistence.\";a:1:{s:8:\"classes.\";a:3:{s:38:\"TYPO3\\CMS\\Belog\\Domain\\Model\\LogEntry.\";a:1:{s:8:\"mapping.\";a:2:{s:9:\"tableName\";s:7:\"sys_log\";s:8:\"columns.\";a:8:{s:7:\"userid.\";a:1:{s:13:\"mapOnProperty\";s:14:\"backendUserUid\";}s:7:\"recuid.\";a:1:{s:13:\"mapOnProperty\";s:9:\"recordUid\";}s:10:\"tablename.\";a:1:{s:13:\"mapOnProperty\";s:9:\"tableName\";}s:7:\"recpid.\";a:1:{s:13:\"mapOnProperty\";s:9:\"recordPid\";}s:11:\"details_nr.\";a:1:{s:13:\"mapOnProperty\";s:13:\"detailsNumber\";}s:3:\"IP.\";a:1:{s:13:\"mapOnProperty\";s:2:\"ip\";}s:10:\"workspace.\";a:1:{s:13:\"mapOnProperty\";s:12:\"workspaceUid\";}s:6:\"NEWid.\";a:1:{s:13:\"mapOnProperty\";s:5:\"newId\";}}}}s:39:\"TYPO3\\CMS\\Belog\\Domain\\Model\\Workspace.\";a:1:{s:8:\"mapping.\";a:1:{s:9:\"tableName\";s:13:\"sys_workspace\";}}s:42:\"TYPO3\\CMS\\Belog\\Domain\\Model\\HistoryEntry.\";a:1:{s:8:\"mapping.\";a:1:{s:9:\"tableName\";s:11:\"sys_history\";}}}}s:9:\"settings.\";a:3:{s:29:\"selectableNumberOfLogEntries.\";a:7:{i:20;s:2:\"20\";i:50;s:2:\"50\";i:100;s:3:\"100\";i:200;s:3:\"200\";i:500;s:3:\"500\";i:1000;s:4:\"1000\";i:1000000;s:3:\"any\";}s:21:\"selectableTimeFrames.\";a:8:{i:0;s:8:\"thisWeek\";i:1;s:8:\"lastWeek\";i:2;s:9:\"last7Days\";i:10;s:9:\"thisMonth\";i:11;s:9:\"lastMonth\";i:12;s:10:\"last31Days\";i:20;s:7:\"noLimit\";i:30;s:11:\"userDefined\";}s:18:\"selectableActions.\";a:7:{i:0;s:3:\"any\";i:1;s:14:\"actionDatabase\";i:2;s:10:\"actionFile\";i:3;s:11:\"actionCache\";i:254;s:14:\"actionSettings\";i:255;s:11:\"actionLogin\";i:-1;s:12:\"actionErrors\";}}}s:10:\"tx_beuser.\";a:2:{s:12:\"persistence.\";a:2:{s:10:\"storagePid\";s:1:\"0\";s:8:\"classes.\";a:2:{s:42:\"TYPO3\\CMS\\Beuser\\Domain\\Model\\BackendUser.\";a:1:{s:8:\"mapping.\";a:2:{s:9:\"tableName\";s:8:\"be_users\";s:8:\"columns.\";a:4:{s:18:\"allowed_languages.\";a:1:{s:13:\"mapOnProperty\";s:16:\"allowedLanguages\";}s:17:\"file_mountpoints.\";a:1:{s:13:\"mapOnProperty\";s:15:\"fileMountPoints\";}s:15:\"db_mountpoints.\";a:1:{s:13:\"mapOnProperty\";s:13:\"dbMountPoints\";}s:10:\"usergroup.\";a:1:{s:13:\"mapOnProperty\";s:17:\"backendUserGroups\";}}}}s:47:\"TYPO3\\CMS\\Beuser\\Domain\\Model\\BackendUserGroup.\";a:1:{s:8:\"mapping.\";a:2:{s:9:\"tableName\";s:9:\"be_groups\";s:8:\"columns.\";a:1:{s:9:\"subgroup.\";a:1:{s:13:\"mapOnProperty\";s:9:\"subGroups\";}}}}}}s:9:\"settings.\";a:1:{s:5:\"dummy\";s:3:\"foo\";}}}s:23:\"fluidAjaxWidgetResponse\";s:4:\"PAGE\";s:24:\"fluidAjaxWidgetResponse.\";a:4:{s:7:\"typeNum\";s:4:\"7076\";s:7:\"config.\";a:3:{s:8:\"no_cache\";s:1:\"1\";s:20:\"disableAllHeaderCode\";s:1:\"1\";s:17:\"additionalHeaders\";s:23:\"Content-type:text/plain\";}i:10;s:8:\"USER_INT\";s:3:\"10.\";a:1:{s:8:\"userFunc\";s:35:\"tx_fluid_core_widget_bootstrap->run\";}}s:9:\"sitetitle\";s:0:\"\";s:6:\"types.\";a:1:{i:7076;s:23:\"fluidAjaxWidgetResponse\";}}\";'),(2,'28771028d3b972f058a0a5c474e9cda7',2145909600,'s:6:\"a:0:{}\";');
 /*!40000 ALTER TABLE `cf_cache_hash` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `cf_cache_hash_tags`;
@@ -247,12 +250,11 @@ CREATE TABLE `cf_cache_hash_tags` (
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`),
   KEY `cache_tag` (`tag`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `cf_cache_hash_tags` WRITE;
 /*!40000 ALTER TABLE `cf_cache_hash_tags` DISABLE KEYS */;
-INSERT INTO `cf_cache_hash_tags` VALUES (1,'1da12b83b2bbeac1bf1fd4fb79796c46','ident_TS_TEMPLATE'),(2,'28771028d3b972f058a0a5c474e9cda7','ident_TMPL_CONDITIONS_ALL');
 /*!40000 ALTER TABLE `cf_cache_hash_tags` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `cf_cache_pages`;
@@ -265,7 +267,7 @@ CREATE TABLE `cf_cache_pages` (
   `content` mediumblob,
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`,`expires`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `cf_cache_pages` WRITE;
@@ -282,7 +284,7 @@ CREATE TABLE `cf_cache_pages_tags` (
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`),
   KEY `cache_tag` (`tag`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `cf_cache_pages_tags` WRITE;
@@ -299,12 +301,11 @@ CREATE TABLE `cf_cache_pagesection` (
   `content` mediumblob,
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`,`expires`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `cf_cache_pagesection` WRITE;
 /*!40000 ALTER TABLE `cf_cache_pagesection` DISABLE KEYS */;
-INSERT INTO `cf_cache_pagesection` VALUES (1,'1_222419149',1368365025,'xú•TMèõ0˝++~@¡∞!¨sl=T=4π[N0Ykççê›(‚øwÏjXm+mâÌ7ÛÊy>ßΩY¸K∏R…é”åﬁFK+öÙ∆¿©Ö	ΩIö·&üº;Y\';ãÜ$s+\"√å∑>—äãËôYzíl2º⁄ïÖLDl⁄†EÇÚÿ#MæõVò+…≠€cÿ ´˘ÖÕﬁFœV‘íGPI≈ØfÄX¡gY◊B« ∆ƒı\0≤]‹jK°Î5ä•k;˜fËŸahÒH8ò˝pÏ¯YÿU∞⁄º¿µ[;ÏOF7ÚúÏ~Ü\"Y0=“Y˜æ~“2+A∏ﬁ≠ö—öA√;JòQ[·QÊ,5kMΩ∏Wé=Ú”¶√ÓUd\Z≥cJ\\De}I{Û∫Z?H˘4I≈}3›QR‚¬‚·õh¯†‡·Êpmß¸0HöáÈ!EY%…	“F«ãÉMU∂“Ëñk,S?ˇ»ñcaG∑Dq∂ﬁı»≠òÿK$päòÉ%iîwF|˛è+\r{µ⁄¿¨QyÑMP mV\"GÅ=âDÊs/cˇ“Ÿ˚ß\n 0∂´k5¬w=J=Bßr_ÉôÉè2Ωsœ5§œ–™Ÿ)fÉEKß§“Ø~íáû∂ =†œ˛‘ÀRq|b\ZÏxÉª.˛∞—yµ›π|Zfˇ)h›«b$ã’ Ì_’|>#EºYHUˇêr≠˚§÷8˛Ê™⁄O');
 /*!40000 ALTER TABLE `cf_cache_pagesection` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `cf_cache_pagesection_tags`;
@@ -317,12 +318,11 @@ CREATE TABLE `cf_cache_pagesection_tags` (
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`),
   KEY `cache_tag` (`tag`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `cf_cache_pagesection_tags` WRITE;
 /*!40000 ALTER TABLE `cf_cache_pagesection_tags` DISABLE KEYS */;
-INSERT INTO `cf_cache_pagesection_tags` VALUES (1,'1_222419149','pageId_1'),(2,'1_222419149','mpvarHash_222419149');
 /*!40000 ALTER TABLE `cf_cache_pagesection_tags` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `cf_cache_rootline`;
@@ -335,12 +335,11 @@ CREATE TABLE `cf_cache_rootline` (
   `content` mediumblob,
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`,`expires`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `cf_cache_rootline` WRITE;
 /*!40000 ALTER TABLE `cf_cache_rootline` DISABLE KEYS */;
-INSERT INTO `cf_cache_rootline` VALUES (1,'1__0_0_0',1368365025,'a:1:{i:0;a:23:{s:3:\"pid\";s:1:\"0\";s:3:\"uid\";s:1:\"1\";s:9:\"t3ver_oid\";s:1:\"0\";s:10:\"t3ver_wsid\";s:1:\"0\";s:11:\"t3ver_state\";s:1:\"0\";s:5:\"title\";s:4:\"Home\";s:5:\"alias\";s:0:\"\";s:9:\"nav_title\";s:0:\"\";s:5:\"media\";s:0:\"\";s:6:\"layout\";s:1:\"0\";s:6:\"hidden\";s:1:\"0\";s:9:\"starttime\";s:1:\"0\";s:7:\"endtime\";s:1:\"0\";s:8:\"fe_group\";s:1:\"0\";s:16:\"extendToSubpages\";s:1:\"0\";s:7:\"doktype\";s:1:\"0\";s:8:\"TSconfig\";N;s:11:\"storage_pid\";s:1:\"0\";s:11:\"is_siteroot\";s:1:\"1\";s:9:\"mount_pid\";s:1:\"0\";s:12:\"mount_pid_ol\";s:1:\"0\";s:13:\"fe_login_mode\";s:1:\"0\";s:25:\"backend_layout_next_level\";s:1:\"0\";}}');
 /*!40000 ALTER TABLE `cf_cache_rootline` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `cf_cache_rootline_tags`;
@@ -353,12 +352,11 @@ CREATE TABLE `cf_cache_rootline_tags` (
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`),
   KEY `cache_tag` (`tag`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `cf_cache_rootline_tags` WRITE;
 /*!40000 ALTER TABLE `cf_cache_rootline_tags` DISABLE KEYS */;
-INSERT INTO `cf_cache_rootline_tags` VALUES (1,'1__0_0_0','pageId_1');
 /*!40000 ALTER TABLE `cf_cache_rootline_tags` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `cf_extbase_datamapfactory_datamap`;
@@ -371,7 +369,7 @@ CREATE TABLE `cf_extbase_datamapfactory_datamap` (
   `content` mediumblob,
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`,`expires`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `cf_extbase_datamapfactory_datamap` WRITE;
@@ -405,7 +403,7 @@ CREATE TABLE `cf_extbase_object` (
   `content` mediumblob,
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`,`expires`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=477 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `cf_extbase_object` WRITE;
@@ -439,7 +437,7 @@ CREATE TABLE `cf_extbase_reflection` (
   `content` mediumblob,
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`,`expires`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `cf_extbase_reflection` WRITE;
@@ -473,7 +471,7 @@ CREATE TABLE `cf_extbase_typo3dbbackend_tablecolumns` (
   `content` mediumblob,
   PRIMARY KEY (`id`),
   KEY `cache_id` (`identifier`,`expires`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `cf_extbase_typo3dbbackend_tablecolumns` WRITE;
@@ -515,8 +513,10 @@ CREATE TABLE `fe_groups` (
   `TSconfig` text COLLATE utf8_unicode_ci,
   `tx_extbase_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `felogin_redirectPid` tinytext COLLATE utf8_unicode_ci,
+  `tx_phpunit_is_dummy_record` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`),
-  KEY `parent` (`pid`)
+  KEY `parent` (`pid`),
+  KEY `phpunit_dummy` (`tx_phpunit_is_dummy_record`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -601,10 +601,12 @@ CREATE TABLE `fe_users` (
   `tx_extbase_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `felogin_redirectPid` tinytext COLLATE utf8_unicode_ci,
   `felogin_forgotHash` varchar(80) COLLATE utf8_unicode_ci DEFAULT '',
+  `tx_phpunit_is_dummy_record` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`),
   KEY `parent` (`pid`,`username`),
   KEY `username` (`username`),
-  KEY `is_online` (`is_online`)
+  KEY `is_online` (`is_online`),
+  KEY `phpunit_dummy` (`tx_phpunit_is_dummy_record`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -683,16 +685,19 @@ CREATE TABLE `pages` (
   `fe_login_mode` tinyint(4) NOT NULL DEFAULT '0',
   `backend_layout` int(10) NOT NULL DEFAULT '0',
   `backend_layout_next_level` int(10) NOT NULL DEFAULT '0',
+  `tx_phpunit_is_dummy_record` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `categories` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`),
   KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`),
   KEY `parent` (`pid`,`deleted`,`sorting`),
-  KEY `alias` (`alias`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `alias` (`alias`),
+  KEY `phpunit_dummy` (`tx_phpunit_is_dummy_record`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `pages` WRITE;
 /*!40000 ALTER TABLE `pages` DISABLE KEYS */;
-INSERT INTO `pages` VALUES (1,0,0,0,0,'',0,0,0,0,0,0,1368361211,0,0,0,0,0,0,0,0,1368361211,0,0,'Home',0,NULL,0,1,0,0,'',0,0,0,0,0,0,'0','',0,0,'',NULL,0,NULL,0,'',0,NULL,0,0,NULL,'',0,'','','',0,0,0,0,'',0,0,0,0);
+INSERT INTO `pages` VALUES (1,0,0,0,0,'',0,0,0,0,0,0,1368373473,512,0,0,0,0,0,0,0,1368361211,0,0,'root',4,NULL,0,1,0,0,'',0,0,0,2,0,0,'','',0,0,'','0',0,NULL,0,'',0,NULL,0,1368361211,NULL,'',0,'','','',0,0,0,0,'',0,0,0,0,0,0),(2,1,0,0,0,'',0,0,0,0,0,0,1368373322,256,0,1,0,31,27,0,0,1368373303,1,0,'Home',1,NULL,0,0,0,0,'',0,0,1,0,0,0,'0','',0,0,'',NULL,0,NULL,0,'',0,NULL,0,1368373322,NULL,'',0,'','','',0,0,0,0,'',0,0,0,0,0,0),(3,1,0,0,0,'',0,0,0,0,0,0,1369056007,512,0,1,0,31,27,0,0,1369055882,1,0,'Inventory',1,NULL,0,0,0,0,'',0,0,1,0,0,0,'0','',0,0,'',NULL,0,NULL,0,'',0,NULL,0,1372583767,NULL,'',0,'','','',0,0,0,0,'',0,0,0,0,0,0),(4,0,0,0,0,'',0,0,0,0,0,0,1369056059,256,0,1,0,31,27,0,0,1369056045,1,0,'Inventory',254,NULL,0,0,0,0,'',0,0,1,0,0,0,'0','',0,0,'',NULL,0,NULL,0,'',0,NULL,0,0,NULL,'',0,'','','',0,0,0,0,'',0,0,0,0,0,0);
 /*!40000 ALTER TABLE `pages` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `pages_language_overlay`;
@@ -815,9 +820,11 @@ CREATE TABLE `sys_category` (
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `parent` int(11) NOT NULL DEFAULT '0',
   `items` int(11) NOT NULL DEFAULT '0',
+  `tx_phpunit_is_dummy_record` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`),
   KEY `parent` (`pid`),
-  KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`)
+  KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`),
+  KEY `phpunit_dummy` (`tx_phpunit_is_dummy_record`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -834,8 +841,10 @@ CREATE TABLE `sys_category_record_mm` (
   `tablenames` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `sorting` int(11) NOT NULL DEFAULT '0',
   `sorting_foreign` int(11) NOT NULL DEFAULT '0',
+  `tx_phpunit_is_dummy_record` tinyint(1) unsigned NOT NULL DEFAULT '0',
   KEY `uid_local_foreign` (`uid_local`,`uid_foreign`),
-  KEY `uid_foreign_tablenames` (`uid_foreign`,`tablenames`)
+  KEY `uid_foreign_tablenames` (`uid_foreign`,`tablenames`),
+  KEY `phpunit_dummy` (`tx_phpunit_is_dummy_record`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -964,16 +973,19 @@ CREATE TABLE `sys_file` (
   `height` int(11) NOT NULL DEFAULT '0',
   `description` text COLLATE utf8_unicode_ci,
   `alternative` text COLLATE utf8_unicode_ci,
+  `tx_phpunit_is_dummy_record` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`),
   KEY `parent` (`pid`,`deleted`),
   KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`),
   KEY `sel01` (`storage`,`identifier`(20)),
-  KEY `sha1` (`sha1`(40))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `sha1` (`sha1`(40)),
+  KEY `phpunit_dummy` (`tx_phpunit_is_dummy_record`)
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `sys_file` WRITE;
 /*!40000 ALTER TABLE `sys_file` DISABLE KEYS */;
+INSERT INTO `sys_file` VALUES (1,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/about/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'359ae0fb420fe8afe1a8b8bc5e46d75090a826b9',637,1368287531,1368287531,16,16,NULL,NULL,0),(2,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/aboutmodules/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'9d5fc8f9fab3a3efa46c1842d4f82da55cc93a7f',642,1368287531,1368287531,16,16,NULL,NULL,0),(3,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/adodb/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'2a54cd4dd32062ae916a12fedfee81c91cd94766',1030,1368287531,1368287531,18,16,NULL,NULL,0),(4,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/backend/ext_icon.png','png','image/png','ext_icon.png',NULL,'fba9573807897088b0e67958a5f5d1ea96a50fae',344,1368287531,1368287531,16,16,NULL,NULL,0),(5,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/belog/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'ee7d55af61353254b82c663a3b532c53ee7324c7',359,1368287531,1368287531,16,16,NULL,NULL,0),(6,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/beuser/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'18ea9ee90f8537b1411a9053de731c6d61de0dbd',157,1368287531,1368287531,16,16,NULL,NULL,0),(7,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/cms/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'55d721454b6ae200c9512cc320a7f8c07a4a648e',357,1368287531,1368287531,18,16,NULL,NULL,0),(8,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/context_help/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'3bf69d49b8f991557bdc7430d533e3cd0794234a',619,1368287531,1368287531,16,16,NULL,NULL,0),(9,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/core/ext_icon.png','png','image/png','ext_icon.png',NULL,'fba9573807897088b0e67958a5f5d1ea96a50fae',344,1368287531,1368287531,16,16,NULL,NULL,0),(10,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/cshmanual/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'a863b8384991b598fffd6c7a3f301457ba6d49cb',1051,1368287531,1368287531,16,16,NULL,NULL,0),(11,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/css_styled_content/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'0a78cb0d24ff27b8e1183e39d5ac6562a6e545ad',142,1368287531,1368287531,21,18,NULL,NULL,0),(12,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/dbal/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'2feadd53a6ebcde933910d6a9ee9b00d1c4dcda6',622,1368287551,1368287551,18,16,NULL,NULL,0),(13,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/extbase/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'23c189072cfe4edf1eb5038e4ebc62b013ccd57b',177,1368287568,1368287568,18,16,NULL,NULL,0),(14,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/extensionmanager/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'e67da46684aa49e6991ded936467fc063936032e',614,1368287531,1368287531,16,16,NULL,NULL,0),(15,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/extra_page_cm_options/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'a99cc2f0e36d9b7a146e703ad57a485096c70e5d',241,1368287531,1368287531,21,18,NULL,NULL,0),(16,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/feedit/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'0d19ca588b292b1e94aefb6fed4e8f2db3e97433',110,1368287531,1368287531,18,16,NULL,NULL,0),(17,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/felogin/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'3e627f00b843d94e3905b4fa490e6d41bdf9c969',194,1368287531,1368287531,21,18,NULL,NULL,0),(18,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/filelist/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'8ee012fc11e8da3042bc9a4df1e52109406b0c59',227,1368287531,1368287531,16,16,NULL,NULL,0),(19,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/fluid/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'23c189072cfe4edf1eb5038e4ebc62b013ccd57b',177,1368287576,1368287576,18,16,NULL,NULL,0),(20,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/form/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'9c735e89a469f015a4a1c43b3450c783dba8cbe4',622,1368287531,1368287531,18,16,NULL,NULL,0),(21,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/frontend/ext_icon.png','png','image/png','ext_icon.png',NULL,'fba9573807897088b0e67958a5f5d1ea96a50fae',344,1368287531,1368287531,16,16,NULL,NULL,0),(22,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/func/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'530725c4a56f8b5b72efd09e6f7cf594f896e8e5',118,1368287531,1368287531,18,12,NULL,NULL,0),(23,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/func_wizards/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'5f4b36af8d29685a9bc44d425104a49334c6d34e',565,1368287531,1368287531,16,16,NULL,NULL,0),(24,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/impexp/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'21aa38a8577e0c6539a1dcf6bd880c381ec1de46',229,1368287531,1368287531,16,16,NULL,NULL,0),(25,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/indexed_search/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'3b1186bfb3b1fe3ed608f68a80949b20e7414a23',90,1368287531,1368287531,15,12,NULL,NULL,0),(26,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/indexed_search_mysql/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'3b1186bfb3b1fe3ed608f68a80949b20e7414a23',90,1368287531,1368287531,15,12,NULL,NULL,0),(27,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/info/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'d4e3ec69f6c7e02f9d2c5d749024bf46ab0c22e1',1000,1368287531,1368287531,16,16,NULL,NULL,0),(28,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/info_pagetsconfig/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'fb0fb3390936ad820c5b7436cd87d442123bd33d',619,1368287531,1368287531,21,18,NULL,NULL,0),(29,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/install/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'1e092ba01ec0babe2fe1b22b67c45de899c484c8',601,1368287531,1368287531,16,16,NULL,NULL,0),(30,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/lang/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'f35e159406d07c9675830bc51ef14a210f1cab1f',581,1368287531,1368287531,16,16,NULL,NULL,0),(31,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/linkvalidator/ext_icon.gif','gif','image/png','ext_icon.gif',NULL,'cdada35018dfbdd57e6442ea038a0314677d9114',918,1368287580,1368287580,16,16,NULL,NULL,0),(32,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/lowlevel/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'c182aec01a3225de5f72ef272d0e8a59ec670d93',82,1368287531,1368287531,14,12,NULL,NULL,0),(33,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/opendocs/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'54f00d2070213715d290f2f813601a27c5277869',84,1368287531,1368287531,14,12,NULL,NULL,0),(34,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/openid/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'734c40675f05fd730cea8e39c77af5eb47cc4d9b',346,1368287531,1368287531,16,16,NULL,NULL,0),(35,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/perm/ext_icon.gif','gif','image/png','ext_icon.gif',NULL,'03717e1ac333d0bef7a33a3ceff1305ef6deecbc',733,1368287531,1368287531,16,16,NULL,NULL,0),(36,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/recordlist/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'332e96b6dac59bffa4dbf87137e1fee4f44bd5d3',129,1368287532,1368287532,16,16,NULL,NULL,0),(37,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/recycler/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'1861cc8eecb71a20e757de83386ba3841ab4da1d',349,1368287532,1368287532,16,16,NULL,NULL,0),(38,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/reports/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'ee7d55af61353254b82c663a3b532c53ee7324c7',359,1368287772,1368287772,16,16,NULL,NULL,0),(39,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/rsaauth/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'70c2aab11e104ec14fc3934f28201630d0935b8a',850,1368287532,1368287532,16,16,NULL,NULL,0),(40,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/rtehtmlarea/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'5061eebad398d086cc5dfafb2182c159a723af56',161,1368287532,1368287532,18,16,NULL,NULL,0),(41,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/saltedpasswords/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'a6a08a082b189dd1f669595ac91fc90fde913e23',282,1368287532,1368287532,16,16,NULL,NULL,0),(42,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/scheduler/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'405729c40df7f0e38105583492a8d33bae1db0fe',667,1368287532,1368287532,16,16,NULL,NULL,0),(43,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/setup/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'efba11523cbede8368582445e9036f4eab580d3f',231,1368287532,1368287532,16,16,NULL,NULL,0),(44,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/sv/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'55d721454b6ae200c9512cc320a7f8c07a4a648e',357,1368287532,1368287532,18,16,NULL,NULL,0),(45,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/sys_action/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'fdd57620b7a3a3e9755595363fa207af86f598ff',630,1368287532,1368287532,16,16,NULL,NULL,0),(46,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/sys_note/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'7a97bb0a5cc6e5e0339a1a90f28094a7a41c693f',156,1368287532,1368287532,18,16,NULL,NULL,0),(47,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/t3editor/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'fb9c533ec6c7536c0f5b4049994d3f9aba80121f',1023,1368287532,1368287532,16,16,NULL,NULL,0),(48,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/t3skin/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'ad4e9bb93928007bad9b98c36a794eaa86544308',254,1368287532,1368287532,21,18,NULL,NULL,0),(49,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/taskcenter/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'b4f17c0cd49f4ac83b3fe99946d4df7861f01962',167,1368287532,1368287532,16,16,NULL,NULL,0),(50,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/tsconfig_help/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'ce2ce494584ed2b1dae4639a17531a5ea7295dab',1049,1368287772,1368287772,16,16,NULL,NULL,0),(51,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/tstemplate/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'9aa8f313a25f48c65529acdf796557f3149c3c74',99,1368287532,1368287532,17,12,NULL,NULL,0),(52,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/tstemplate_analyzer/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'18b089a7e39a2831d775c54d9b4ad781810dbb0b',366,1368287532,1368287532,21,18,NULL,NULL,0),(53,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/tstemplate_ceditor/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'bbcb0ff3d075efe84d03ac8a039fcad4dd1027e9',134,1368287532,1368287532,21,18,NULL,NULL,0),(54,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/tstemplate_info/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'e5cc70deccb28078e5840223c70e15a9f70b3de9',194,1368287532,1368287532,21,18,NULL,NULL,0),(55,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/tstemplate_objbrowser/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'56a3a27afae4d201ccbb9b1cd73717e94bb7a940',203,1368287532,1368287532,21,18,NULL,NULL,0),(56,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/version/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'61c9380cfa98ccc2dbbe8e9bcc94081815bf6109',383,1368287583,1368287583,16,16,NULL,NULL,0),(57,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/viewpage/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'9d5ce162e3a36bc67590ba0c1a5360ab2a83d2e8',367,1368287532,1368287532,16,16,NULL,NULL,0),(58,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/wizard_crpages/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'db136645cf980646e414fc50b7c35e9f4a049143',649,1368287532,1368287532,21,18,NULL,NULL,0),(59,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/wizard_sortpages/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'86de0fe6bfe0d29b7bf4771b13dde1fc206336a6',206,1368287532,1368287532,21,18,NULL,NULL,0),(60,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3/sysext/workspaces/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'1d8dd277a444da23b8c4d4da51b477dccacd21de',374,1368287593,1368287593,16,16,NULL,NULL,0),(61,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3conf/ext/coreapi/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'23c189072cfe4edf1eb5038e4ebc62b013ccd57b',177,1368287725,1368287725,18,16,NULL,NULL,0),(62,0,1368361797,1368361797,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3conf/ext/phpunit/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'76338b18df868edb741378a96ddcc79cd814dca3',630,1368287669,1368287669,18,16,NULL,NULL,0),(63,0,1368370630,1368370630,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3conf/ext/helmbert_bootstrapsite/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'ce737f51ff9d83aac1f93d3d03e6a9cd2445ac88',1062,1368370514,1368370514,16,16,NULL,NULL,0),(64,0,1371398504,1371398504,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3conf/ext/blog_example/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'23c189072cfe4edf1eb5038e4ebc62b013ccd57b',177,1371237855,1371237855,18,16,NULL,NULL,0),(65,0,1371398504,1371398504,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3conf/ext/extension_builder/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'23c189072cfe4edf1eb5038e4ebc62b013ccd57b',177,1371398687,1371398687,18,16,NULL,NULL,0),(66,0,1372325669,1372325669,1,0,0,0,0,'',0,0,0,0,0,0,'2',0,'/typo3conf/ext/inventory/ext_icon.gif','gif','image/gif','ext_icon.gif',NULL,'23c189072cfe4edf1eb5038e4ebc62b013ccd57b',177,1372329102,1372329102,18,16,NULL,NULL,0);
 /*!40000 ALTER TABLE `sys_file` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `sys_file_collection`;
@@ -1008,9 +1020,11 @@ CREATE TABLE `sys_file_collection` (
   `files` int(11) NOT NULL DEFAULT '0',
   `storage` int(11) NOT NULL DEFAULT '0',
   `folder` text COLLATE utf8_unicode_ci NOT NULL,
+  `tx_phpunit_is_dummy_record` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`),
   KEY `parent` (`pid`,`deleted`),
-  KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`)
+  KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`),
+  KEY `phpunit_dummy` (`tx_phpunit_is_dummy_record`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1036,11 +1050,12 @@ CREATE TABLE `sys_file_processedfile` (
   `width` int(11) DEFAULT '0',
   `height` int(11) DEFAULT '0',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `sys_file_processedfile` WRITE;
 /*!40000 ALTER TABLE `sys_file_processedfile` DISABLE KEYS */;
+INSERT INTO `sys_file_processedfile` VALUES (1,1368361810,1368361810,0,1,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','359ae0fb420fe8afe1a8b8bc5e46d75090a826b9','Image.CropScaleMask','43ab9bcabb',0,0),(2,1368361810,1368361810,0,2,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','9d5fc8f9fab3a3efa46c1842d4f82da55cc93a7f','Image.CropScaleMask','ecbe7094a2',0,0),(3,1368361810,1368361810,0,3,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','2a54cd4dd32062ae916a12fedfee81c91cd94766','Image.CropScaleMask','ae284a1af5',0,0),(4,1368361810,1368361810,0,4,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','fba9573807897088b0e67958a5f5d1ea96a50fae','Image.CropScaleMask','c134a993e3',0,0),(5,1368361810,1368361810,0,5,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','ee7d55af61353254b82c663a3b532c53ee7324c7','Image.CropScaleMask','bbf0954d7e',0,0),(6,1368361810,1368361810,0,6,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','18ea9ee90f8537b1411a9053de731c6d61de0dbd','Image.CropScaleMask','5757ce9c1e',0,0),(7,1368361810,1368361810,0,7,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','55d721454b6ae200c9512cc320a7f8c07a4a648e','Image.CropScaleMask','f9831e5b18',0,0),(8,1368361811,1368361811,0,8,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','3bf69d49b8f991557bdc7430d533e3cd0794234a','Image.CropScaleMask','d937a778bc',0,0),(9,1368361811,1368361811,0,9,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','fba9573807897088b0e67958a5f5d1ea96a50fae','Image.CropScaleMask','16a33b92d1',0,0),(10,1368361811,1368361811,0,10,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','a863b8384991b598fffd6c7a3f301457ba6d49cb','Image.CropScaleMask','201b949b9b',0,0),(11,1368361811,1368361811,0,11,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','0a78cb0d24ff27b8e1183e39d5ac6562a6e545ad','Image.CropScaleMask','15039a41cd',0,0),(12,1368361811,1368361811,0,12,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','2feadd53a6ebcde933910d6a9ee9b00d1c4dcda6','Image.CropScaleMask','c060bfc7a2',0,0),(13,1368361811,1368361811,0,13,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','23c189072cfe4edf1eb5038e4ebc62b013ccd57b','Image.CropScaleMask','08ef7baf0f',0,0),(14,1368361811,1368361811,0,14,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','e67da46684aa49e6991ded936467fc063936032e','Image.CropScaleMask','fdb287cbc8',0,0),(15,1368361811,1368361811,0,15,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','a99cc2f0e36d9b7a146e703ad57a485096c70e5d','Image.CropScaleMask','615322548f',0,0),(16,1368361811,1368361811,0,16,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','0d19ca588b292b1e94aefb6fed4e8f2db3e97433','Image.CropScaleMask','9d565d11d6',0,0),(17,1368361812,1368361812,0,17,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','3e627f00b843d94e3905b4fa490e6d41bdf9c969','Image.CropScaleMask','6120f25ffa',0,0),(18,1368361812,1368361812,0,18,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','8ee012fc11e8da3042bc9a4df1e52109406b0c59','Image.CropScaleMask','59605e70c2',0,0),(19,1368361812,1368361812,0,19,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','23c189072cfe4edf1eb5038e4ebc62b013ccd57b','Image.CropScaleMask','a5bc487cca',0,0),(20,1368361812,1368361812,0,20,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','9c735e89a469f015a4a1c43b3450c783dba8cbe4','Image.CropScaleMask','33acc26f09',0,0),(21,1368361812,1368361812,0,21,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','fba9573807897088b0e67958a5f5d1ea96a50fae','Image.CropScaleMask','055ea0d078',0,0),(22,1368361812,1368361812,0,22,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','530725c4a56f8b5b72efd09e6f7cf594f896e8e5','Image.CropScaleMask','534ab67d90',0,0),(23,1368361812,1368361812,0,23,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','5f4b36af8d29685a9bc44d425104a49334c6d34e','Image.CropScaleMask','4e7af0b376',0,0),(24,1368361813,1368361813,0,24,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','21aa38a8577e0c6539a1dcf6bd880c381ec1de46','Image.CropScaleMask','739341a158',0,0),(25,1368361813,1368361813,0,25,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','3b1186bfb3b1fe3ed608f68a80949b20e7414a23','Image.CropScaleMask','227ed9ab0b',0,0),(26,1368361813,1368361813,0,26,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','3b1186bfb3b1fe3ed608f68a80949b20e7414a23','Image.CropScaleMask','3a8bb92a7e',0,0),(27,1368361813,1368361813,0,27,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','d4e3ec69f6c7e02f9d2c5d749024bf46ab0c22e1','Image.CropScaleMask','a183766da9',0,0),(28,1368361813,1368361813,0,28,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','fb0fb3390936ad820c5b7436cd87d442123bd33d','Image.CropScaleMask','e04f785a19',0,0),(29,1368361813,1368361813,0,29,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','1e092ba01ec0babe2fe1b22b67c45de899c484c8','Image.CropScaleMask','5c904d8744',0,0),(30,1368361813,1368361813,0,30,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','f35e159406d07c9675830bc51ef14a210f1cab1f','Image.CropScaleMask','b18d4029b3',0,0),(31,1368361814,1368361814,0,31,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','cdada35018dfbdd57e6442ea038a0314677d9114','Image.CropScaleMask','78295dbe29',0,0),(32,1368361814,1368361814,0,32,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','c182aec01a3225de5f72ef272d0e8a59ec670d93','Image.CropScaleMask','18b42ead3e',0,0),(33,1368361814,1368361814,0,33,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','54f00d2070213715d290f2f813601a27c5277869','Image.CropScaleMask','5d6eeb04a4',0,0),(34,1368361814,1368361814,0,34,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','734c40675f05fd730cea8e39c77af5eb47cc4d9b','Image.CropScaleMask','73555dd387',0,0),(35,1368361814,1368361814,0,35,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','03717e1ac333d0bef7a33a3ceff1305ef6deecbc','Image.CropScaleMask','54159e7c3f',0,0),(36,1368361814,1368361814,0,36,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','332e96b6dac59bffa4dbf87137e1fee4f44bd5d3','Image.CropScaleMask','9fb59c6cea',0,0),(37,1368361814,1368361814,0,37,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','1861cc8eecb71a20e757de83386ba3841ab4da1d','Image.CropScaleMask','fdcb2aae67',0,0),(38,1371229287,1368361797,0,38,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','cbaafb62f40fa004732d86e5d93fc50ca067a009','Image.CropScaleMask','42b2925b38',0,0),(39,1368361815,1368361815,0,39,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','70c2aab11e104ec14fc3934f28201630d0935b8a','Image.CropScaleMask','36e7feec9c',0,0),(40,1368361815,1368361815,0,40,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','5061eebad398d086cc5dfafb2182c159a723af56','Image.CropScaleMask','582beadb9c',0,0),(41,1368361815,1368361815,0,41,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','a6a08a082b189dd1f669595ac91fc90fde913e23','Image.CropScaleMask','0f1ae947a3',0,0),(42,1368361815,1368361815,0,42,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','405729c40df7f0e38105583492a8d33bae1db0fe','Image.CropScaleMask','1e5216cadd',0,0),(43,1368361815,1368361815,0,43,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','efba11523cbede8368582445e9036f4eab580d3f','Image.CropScaleMask','b9f73dd06b',0,0),(44,1368361815,1368361815,0,44,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','55d721454b6ae200c9512cc320a7f8c07a4a648e','Image.CropScaleMask','73bfe96718',0,0),(45,1368361816,1368361816,0,45,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','fdd57620b7a3a3e9755595363fa207af86f598ff','Image.CropScaleMask','bccfbf21f2',0,0),(46,1368361816,1368361816,0,46,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','7a97bb0a5cc6e5e0339a1a90f28094a7a41c693f','Image.CropScaleMask','d27e7d5d22',0,0),(47,1368361816,1368361816,0,47,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','fb9c533ec6c7536c0f5b4049994d3f9aba80121f','Image.CropScaleMask','05ca56ed65',0,0),(48,1368361816,1368361816,0,48,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','ad4e9bb93928007bad9b98c36a794eaa86544308','Image.CropScaleMask','b9daa4183b',0,0),(49,1368361816,1368361816,0,49,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','b4f17c0cd49f4ac83b3fe99946d4df7861f01962','Image.CropScaleMask','0c30efa6ae',0,0),(50,1368361816,1368361816,0,50,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','ce2ce494584ed2b1dae4639a17531a5ea7295dab','Image.CropScaleMask','9dc58cf005',0,0),(51,1368361816,1368361816,0,51,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','9aa8f313a25f48c65529acdf796557f3149c3c74','Image.CropScaleMask','5faf9063a4',0,0),(52,1368361817,1368361817,0,52,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','18b089a7e39a2831d775c54d9b4ad781810dbb0b','Image.CropScaleMask','4743adab70',0,0),(53,1368361817,1368361817,0,53,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','bbcb0ff3d075efe84d03ac8a039fcad4dd1027e9','Image.CropScaleMask','7a363281a9',0,0),(54,1368361817,1368361817,0,54,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','e5cc70deccb28078e5840223c70e15a9f70b3de9','Image.CropScaleMask','1b4cc2d5ac',0,0),(55,1368361817,1368361817,0,55,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','56a3a27afae4d201ccbb9b1cd73717e94bb7a940','Image.CropScaleMask','17938c0d41',0,0),(56,1368361817,1368361817,0,56,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','61c9380cfa98ccc2dbbe8e9bcc94081815bf6109','Image.CropScaleMask','c57d81d97f',0,0),(57,1368361817,1368361817,0,57,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','9d5ce162e3a36bc67590ba0c1a5360ab2a83d2e8','Image.CropScaleMask','fbd8301637',0,0),(58,1368361817,1368361817,0,58,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','db136645cf980646e414fc50b7c35e9f4a049143','Image.CropScaleMask','983d5d0fab',0,0),(59,1368361817,1368361817,0,59,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','86de0fe6bfe0d29b7bf4771b13dde1fc206336a6','Image.CropScaleMask','8753ab68f2',0,0),(60,1368361818,1368361818,0,60,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','1d8dd277a444da23b8c4d4da51b477dccacd21de','Image.CropScaleMask','ebd46d191d',0,0),(61,1368361818,1368361818,0,61,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','23c189072cfe4edf1eb5038e4ebc62b013ccd57b','Image.CropScaleMask','ef403aca5c',0,0),(62,1368361818,1368361818,0,62,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','76338b18df868edb741378a96ddcc79cd814dca3','Image.CropScaleMask','7085e3f312',0,0),(63,1368370641,1368370641,0,63,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','ce737f51ff9d83aac1f93d3d03e6a9cd2445ac88','Image.CropScaleMask','0b8357f4a1',0,0),(64,1371398515,1371398515,0,64,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','23c189072cfe4edf1eb5038e4ebc62b013ccd57b','Image.CropScaleMask','db0ac8457b',0,0),(65,1371398515,1371398515,0,65,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','23c189072cfe4edf1eb5038e4ebc62b013ccd57b','Image.CropScaleMask','18231b7f21',0,0),(66,1372325682,1372325682,0,66,'',NULL,'a:9:{s:5:\"width\";N;s:6:\"height\";s:2:\"16\";s:13:\"fileExtension\";N;s:8:\"maxWidth\";i:0;s:9:\"maxHeight\";i:0;s:8:\"minWidth\";i:0;s:9:\"minHeight\";i:0;s:7:\"noScale\";N;s:20:\"additionalParameters\";N;}','23c189072cfe4edf1eb5038e4ebc62b013ccd57b','Image.CropScaleMask','eba6f8c6f8',0,0);
 /*!40000 ALTER TABLE `sys_file_processedfile` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `sys_file_reference`;
@@ -1079,8 +1094,10 @@ CREATE TABLE `sys_file_reference` (
   `alternative` tinytext COLLATE utf8_unicode_ci,
   `link` tinytext COLLATE utf8_unicode_ci,
   `downloadname` tinytext COLLATE utf8_unicode_ci,
+  `tx_phpunit_is_dummy_record` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`),
-  KEY `parent` (`pid`,`deleted`)
+  KEY `parent` (`pid`,`deleted`),
+  KEY `phpunit_dummy` (`tx_phpunit_is_dummy_record`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1110,11 +1127,12 @@ CREATE TABLE `sys_file_storage` (
   `processingfolder` tinytext COLLATE utf8_unicode_ci,
   PRIMARY KEY (`uid`),
   KEY `parent` (`pid`,`deleted`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `sys_file_storage` WRITE;
 /*!40000 ALTER TABLE `sys_file_storage` DISABLE KEYS */;
+INSERT INTO `sys_file_storage` VALUES (1,0,1368361606,1368361606,0,0,0,'fileadmin/ (auto-created)','This is the local fileadmin/ directory. This storage mount has been created automatically by TYPO3.','Local','<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\" ?>\n<T3FlexForms>\n    <data>\n        <sheet index=\"sDEF\">\n            <language index=\"lDEF\">\n                <field index=\"basePath\">\n                    <value index=\"vDEF\">fileadmin/</value>\n                </field>\n                <field index=\"pathType\">\n                    <value index=\"vDEF\">relative</value>\n                </field>\n            </language>\n        </sheet>\n    </data>\n</T3FlexForms>',1,1,1,1,NULL);
 /*!40000 ALTER TABLE `sys_file_storage` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `sys_filemounts`;
@@ -1158,7 +1176,7 @@ CREATE TABLE `sys_history` (
   KEY `recordident_1` (`tablename`,`recuid`),
   KEY `recordident_2` (`tablename`,`tstamp`),
   KEY `sys_log_uid` (`sys_log_uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `sys_history` WRITE;
@@ -1239,7 +1257,7 @@ CREATE TABLE `sys_log` (
   KEY `recuidIdx` (`recuid`,`uid`),
   KEY `user_auth` (`type`,`action`,`tstamp`),
   KEY `request` (`request_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `sys_log` WRITE;
@@ -1335,6 +1353,7 @@ CREATE TABLE `sys_refindex` (
 
 LOCK TABLES `sys_refindex` WRITE;
 /*!40000 ALTER TABLE `sys_refindex` DISABLE KEYS */;
+INSERT INTO `sys_refindex` VALUES ('0ee5bd47fd084e1824af37db81224686','pages',1,'shortcut','','','',0,0,'pages',2,''),('3475342c8d4b2839278d50353cdd3b1e','pages',1,'media','','','',0,0,'',0,''),('42f485e7699d313f0f92e5d578adc6c5','tt_content',2,'media','','','',0,0,'',0,''),('5305884e40123a43be225a05c12bc943','tt_content',1,'pages','','','',0,1,'pages',4,''),('ce8cb8de0845cbef26e3f0f6f55e1560','pages',4,'media','','','',0,0,'',0,''),('d148c45bf427946bea27b31a5853b0da','tt_content',2,'image','','','',0,0,'',0,''),('db898e731429caa03c4853f85b974647','tt_content',1,'image','','','',0,1,'',0,''),('e2a08ea63f4518b57212bc23425e698c','tt_content',2,'pages','','','',0,0,'pages',4,''),('ee1165b91133aa3ed87cb5365aab8c13','pages',2,'media','','','',0,0,'',0,''),('f0e1e0476e8faca525e0bf70178ed6f4','tt_content',1,'media','','','',0,1,'',0,''),('f5a44f9568bd0723deee98f4799867d2','pages',3,'media','','','',0,0,'',0,'');
 /*!40000 ALTER TABLE `sys_refindex` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `sys_registry`;
@@ -1347,11 +1366,12 @@ CREATE TABLE `sys_registry` (
   `entry_value` blob,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `entry_identifier` (`entry_namespace`,`entry_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `sys_registry` WRITE;
 /*!40000 ALTER TABLE `sys_registry` DISABLE KEYS */;
+INSERT INTO `sys_registry` VALUES (1,'core','formSessionToken:1','s:64:\"9124eb6c7223978acd6bef6167d79e5229eb748995bed610bf0dd659b57da883\";'),(2,'tx_reports','status.highestSeverity','i:2;');
 /*!40000 ALTER TABLE `sys_registry` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `sys_template`;
@@ -1390,15 +1410,17 @@ CREATE TABLE `sys_template` (
   `includeStaticAfterBasedOn` tinyint(4) unsigned NOT NULL DEFAULT '0',
   `static_file_mode` tinyint(4) unsigned NOT NULL DEFAULT '0',
   `tx_impexp_origuid` int(11) NOT NULL DEFAULT '0',
+  `tx_phpunit_is_dummy_record` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`),
   KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`),
-  KEY `parent` (`pid`,`deleted`,`hidden`,`sorting`)
+  KEY `parent` (`pid`,`deleted`,`hidden`,`sorting`),
+  KEY `phpunit_dummy` (`tx_phpunit_is_dummy_record`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `sys_template` WRITE;
 /*!40000 ALTER TABLE `sys_template` DISABLE KEYS */;
-INSERT INTO `sys_template` VALUES (1,1,0,0,0,'',0,0,0,0,0,1368361211,0,1368361211,0,'Default Root Template','',0,0,0,1,1,NULL,NULL,NULL,'',NULL,NULL,0,0,0,0);
+INSERT INTO `sys_template` VALUES (1,1,0,0,0,'',0,0,0,0,0,1371389107,0,1368361211,0,'Default Root Template','',0,0,0,1,1,'EXT:css_styled_content/static/,EXT:helmbert_bootstrapsite/Configuration/Typoscript/,EXT:blog_example/Configuration/TypoScript',NULL,NULL,'',NULL,NULL,0,0,0,0,0);
 /*!40000 ALTER TABLE `sys_template` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `tt_content`;
@@ -1489,16 +1511,209 @@ CREATE TABLE `tt_content` (
   `accessibility_bypass_text` varchar(30) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `l18n_parent` int(11) NOT NULL DEFAULT '0',
   `l18n_diffsource` mediumblob,
+  `tx_phpunit_is_dummy_record` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `categories` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`),
   KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`),
   KEY `parent` (`pid`,`sorting`),
-  KEY `language` (`l18n_parent`,`sys_language_uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `language` (`l18n_parent`,`sys_language_uid`),
+  KEY `phpunit_dummy` (`tx_phpunit_is_dummy_record`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `tt_content` WRITE;
 /*!40000 ALTER TABLE `tt_content` DISABLE KEYS */;
+INSERT INTO `tt_content` VALUES (1,3,0,0,0,'',0,0,0,0,0,0,1372583182,1369076030,1,0,1000000000,'list','','',NULL,NULL,0,0,NULL,1,0,NULL,0,1,0,NULL,'4',0,0,0,'',0,0,'','','',NULL,0,0,0,0,NULL,NULL,NULL,'0','',0,0,0,0,'0','inventory_list',0,0,0,0,'',1,0,NULL,0,'','',0,0,NULL,0,0,0,0,0,0,NULL,'',0,'',0,'a:22:{s:5:\"CType\";N;s:6:\"colPos\";N;s:16:\"sys_language_uid\";N;s:6:\"header\";N;s:13:\"header_layout\";N;s:15:\"header_position\";N;s:4:\"date\";N;s:11:\"header_link\";N;s:9:\"list_type\";N;s:6:\"layout\";N;s:11:\"spaceBefore\";N;s:10:\"spaceAfter\";N;s:13:\"section_frame\";N;s:6:\"hidden\";N;s:12:\"sectionIndex\";N;s:9:\"linkToTop\";N;s:9:\"starttime\";N;s:7:\"endtime\";N;s:8:\"fe_group\";N;s:10:\"select_key\";N;s:5:\"pages\";N;s:9:\"recursive\";N;}',0,0),(2,3,0,0,0,'',0,0,0,0,0,0,1372583767,1372583624,1,0,256,'list','','',NULL,NULL,0,0,NULL,1,0,NULL,0,0,0,NULL,'4',0,0,0,'',0,0,'','','',NULL,0,0,0,0,NULL,NULL,NULL,'0','',0,0,0,0,'0','inventory_pi',0,0,0,0,'',1,0,NULL,0,'','',0,0,NULL,0,0,0,0,0,0,NULL,'',0,'',0,'a:23:{s:5:\"CType\";N;s:6:\"colPos\";N;s:16:\"sys_language_uid\";N;s:6:\"header\";N;s:13:\"header_layout\";N;s:15:\"header_position\";N;s:4:\"date\";N;s:11:\"header_link\";N;s:9:\"list_type\";N;s:6:\"layout\";N;s:11:\"spaceBefore\";N;s:10:\"spaceAfter\";N;s:13:\"section_frame\";N;s:6:\"hidden\";N;s:12:\"sectionIndex\";N;s:9:\"linkToTop\";N;s:9:\"starttime\";N;s:7:\"endtime\";N;s:8:\"fe_group\";N;s:10:\"select_key\";N;s:5:\"pages\";N;s:9:\"recursive\";N;s:10:\"categories\";N;}',0,0);
 /*!40000 ALTER TABLE `tt_content` ENABLE KEYS */;
+UNLOCK TABLES;
+DROP TABLE IF EXISTS `tx_blogexample_domain_model_blog`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tx_blogexample_domain_model_blog` (
+  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(11) NOT NULL DEFAULT '0',
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `logo` tinyblob NOT NULL,
+  `administrator` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
+  `posts` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `tstamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `crdate` int(11) unsigned NOT NULL DEFAULT '0',
+  `deleted` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `hidden` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `t3ver_oid` int(11) NOT NULL DEFAULT '0',
+  `t3ver_id` int(11) NOT NULL DEFAULT '0',
+  `t3ver_wsid` int(11) NOT NULL DEFAULT '0',
+  `t3ver_label` varchar(30) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `t3ver_state` tinyint(4) NOT NULL DEFAULT '0',
+  `t3ver_stage` tinyint(4) NOT NULL DEFAULT '0',
+  `t3ver_count` int(11) NOT NULL DEFAULT '0',
+  `t3ver_tstamp` int(11) NOT NULL DEFAULT '0',
+  `t3_origuid` int(11) NOT NULL DEFAULT '0',
+  `sys_language_uid` int(11) NOT NULL DEFAULT '0',
+  `l18n_parent` int(11) NOT NULL DEFAULT '0',
+  `l18n_diffsource` mediumblob NOT NULL,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `tx_blogexample_domain_model_blog` WRITE;
+/*!40000 ALTER TABLE `tx_blogexample_domain_model_blog` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_blogexample_domain_model_blog` ENABLE KEYS */;
+UNLOCK TABLES;
+DROP TABLE IF EXISTS `tx_blogexample_domain_model_comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tx_blogexample_domain_model_comment` (
+  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(11) NOT NULL DEFAULT '0',
+  `post` int(11) NOT NULL DEFAULT '0',
+  `date` int(11) NOT NULL DEFAULT '0',
+  `author` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `content` text COLLATE utf8_unicode_ci NOT NULL,
+  `tstamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `crdate` int(11) unsigned NOT NULL DEFAULT '0',
+  `deleted` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `hidden` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `tx_blogexample_domain_model_comment` WRITE;
+/*!40000 ALTER TABLE `tx_blogexample_domain_model_comment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_blogexample_domain_model_comment` ENABLE KEYS */;
+UNLOCK TABLES;
+DROP TABLE IF EXISTS `tx_blogexample_domain_model_person`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tx_blogexample_domain_model_person` (
+  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(11) NOT NULL DEFAULT '0',
+  `firstname` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `lastname` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `tstamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `crdate` int(11) unsigned NOT NULL DEFAULT '0',
+  `deleted` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `hidden` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `t3ver_oid` int(11) NOT NULL DEFAULT '0',
+  `t3ver_id` int(11) NOT NULL DEFAULT '0',
+  `t3ver_wsid` int(11) NOT NULL DEFAULT '0',
+  `t3ver_label` varchar(30) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `t3ver_state` tinyint(4) NOT NULL DEFAULT '0',
+  `t3ver_stage` tinyint(4) NOT NULL DEFAULT '0',
+  `t3ver_count` int(11) NOT NULL DEFAULT '0',
+  `t3ver_tstamp` int(11) NOT NULL DEFAULT '0',
+  `t3_origuid` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `tx_blogexample_domain_model_person` WRITE;
+/*!40000 ALTER TABLE `tx_blogexample_domain_model_person` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_blogexample_domain_model_person` ENABLE KEYS */;
+UNLOCK TABLES;
+DROP TABLE IF EXISTS `tx_blogexample_domain_model_post`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tx_blogexample_domain_model_post` (
+  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(11) NOT NULL DEFAULT '0',
+  `blog` int(11) NOT NULL DEFAULT '0',
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `date` int(11) NOT NULL DEFAULT '0',
+  `author` int(255) NOT NULL DEFAULT '0',
+  `content` text COLLATE utf8_unicode_ci NOT NULL,
+  `tags` int(11) unsigned NOT NULL DEFAULT '0',
+  `comments` int(11) unsigned NOT NULL DEFAULT '0',
+  `related_posts` int(11) unsigned NOT NULL DEFAULT '0',
+  `tstamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `crdate` int(11) unsigned NOT NULL DEFAULT '0',
+  `deleted` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `hidden` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `sorting` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `t3ver_oid` int(11) NOT NULL DEFAULT '0',
+  `t3ver_id` int(11) NOT NULL DEFAULT '0',
+  `t3ver_wsid` int(11) NOT NULL DEFAULT '0',
+  `t3ver_label` varchar(30) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `t3ver_state` tinyint(4) NOT NULL DEFAULT '0',
+  `t3ver_stage` tinyint(4) NOT NULL DEFAULT '0',
+  `t3ver_count` int(11) NOT NULL DEFAULT '0',
+  `t3ver_tstamp` int(11) NOT NULL DEFAULT '0',
+  `t3_origuid` int(11) NOT NULL DEFAULT '0',
+  `sys_language_uid` int(11) NOT NULL DEFAULT '0',
+  `l18n_parent` int(11) NOT NULL DEFAULT '0',
+  `l18n_diffsource` mediumblob NOT NULL,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `tx_blogexample_domain_model_post` WRITE;
+/*!40000 ALTER TABLE `tx_blogexample_domain_model_post` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_blogexample_domain_model_post` ENABLE KEYS */;
+UNLOCK TABLES;
+DROP TABLE IF EXISTS `tx_blogexample_domain_model_tag`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tx_blogexample_domain_model_tag` (
+  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `posts` int(11) unsigned NOT NULL DEFAULT '0',
+  `tstamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `crdate` int(11) unsigned NOT NULL DEFAULT '0',
+  `deleted` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `hidden` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `sys_language_uid` int(11) NOT NULL DEFAULT '0',
+  `l18n_parent` int(11) NOT NULL DEFAULT '0',
+  `l18n_diffsource` mediumblob NOT NULL,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `tx_blogexample_domain_model_tag` WRITE;
+/*!40000 ALTER TABLE `tx_blogexample_domain_model_tag` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_blogexample_domain_model_tag` ENABLE KEYS */;
+UNLOCK TABLES;
+DROP TABLE IF EXISTS `tx_blogexample_post_post_mm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tx_blogexample_post_post_mm` (
+  `uid_local` int(11) unsigned NOT NULL DEFAULT '0',
+  `uid_foreign` int(11) unsigned NOT NULL DEFAULT '0',
+  `sorting` int(11) unsigned NOT NULL DEFAULT '0',
+  `sorting_foreign` int(11) unsigned NOT NULL DEFAULT '0',
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `tx_blogexample_post_post_mm` WRITE;
+/*!40000 ALTER TABLE `tx_blogexample_post_post_mm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_blogexample_post_post_mm` ENABLE KEYS */;
+UNLOCK TABLES;
+DROP TABLE IF EXISTS `tx_blogexample_post_tag_mm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tx_blogexample_post_tag_mm` (
+  `uid_local` int(10) unsigned NOT NULL DEFAULT '0',
+  `uid_foreign` int(10) unsigned NOT NULL DEFAULT '0',
+  `sorting` int(10) unsigned NOT NULL DEFAULT '0',
+  `sorting_foreign` int(10) unsigned NOT NULL DEFAULT '0',
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `tx_blogexample_post_tag_mm` WRITE;
+/*!40000 ALTER TABLE `tx_blogexample_post_tag_mm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_blogexample_post_tag_mm` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `tx_extensionmanager_domain_model_extension`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1529,7 +1744,7 @@ CREATE TABLE `tx_extensionmanager_domain_model_extension` (
   `lastreviewedversion` int(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `versionextrepo` (`extension_key`,`version`,`repository`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29778 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `tx_extensionmanager_domain_model_extension` WRITE;
@@ -1554,7 +1769,7 @@ CREATE TABLE `tx_extensionmanager_domain_model_repository` (
 
 LOCK TABLES `tx_extensionmanager_domain_model_repository` WRITE;
 /*!40000 ALTER TABLE `tx_extensionmanager_domain_model_repository` DISABLE KEYS */;
-INSERT INTO `tx_extensionmanager_domain_model_repository` VALUES (1,0,'TYPO3.org Main Repository','Main repository on typo3.org. This repository has some mirrors configured which are available with the mirror url.','http://typo3.org/wsdl/tx_ter_wsdl.php','http://repositories.typo3.org/mirrors.xml.gz',1346191200,0);
+INSERT INTO `tx_extensionmanager_domain_model_repository` VALUES (1,0,'TYPO3.org Main Repository','Main repository on typo3.org. This repository has some mirrors configured which are available with the mirror url.','http://typo3.org/wsdl/tx_ter_wsdl.php','http://repositories.typo3.org/mirrors.xml.gz',1372582859,6048);
 /*!40000 ALTER TABLE `tx_extensionmanager_domain_model_repository` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `tx_impexp_presets`;
@@ -1575,6 +1790,115 @@ CREATE TABLE `tx_impexp_presets` (
 LOCK TABLES `tx_impexp_presets` WRITE;
 /*!40000 ALTER TABLE `tx_impexp_presets` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tx_impexp_presets` ENABLE KEYS */;
+UNLOCK TABLES;
+DROP TABLE IF EXISTS `tx_inventory_domain_model_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tx_inventory_domain_model_product` (
+  `uid` int(11) NOT NULL AUTO_INCREMENT,
+  `pid` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `quantity` int(11) NOT NULL DEFAULT '0',
+  `tstamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `crdate` int(11) unsigned NOT NULL DEFAULT '0',
+  `cruser_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `deleted` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `hidden` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `starttime` int(11) unsigned NOT NULL DEFAULT '0',
+  `endtime` int(11) unsigned NOT NULL DEFAULT '0',
+  `t3ver_oid` int(11) NOT NULL DEFAULT '0',
+  `t3ver_id` int(11) NOT NULL DEFAULT '0',
+  `t3ver_wsid` int(11) NOT NULL DEFAULT '0',
+  `t3ver_label` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `t3ver_state` tinyint(4) NOT NULL DEFAULT '0',
+  `t3ver_stage` int(11) NOT NULL DEFAULT '0',
+  `t3ver_count` int(11) NOT NULL DEFAULT '0',
+  `t3ver_tstamp` int(11) NOT NULL DEFAULT '0',
+  `t3ver_move_id` int(11) NOT NULL DEFAULT '0',
+  `t3_origuid` int(11) NOT NULL DEFAULT '0',
+  `sys_language_uid` int(11) NOT NULL DEFAULT '0',
+  `l10n_parent` int(11) NOT NULL DEFAULT '0',
+  `l10n_diffsource` mediumblob,
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`),
+  KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`),
+  KEY `language` (`l10n_parent`,`sys_language_uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `tx_inventory_domain_model_product` WRITE;
+/*!40000 ALTER TABLE `tx_inventory_domain_model_product` DISABLE KEYS */;
+INSERT INTO `tx_inventory_domain_model_product` VALUES (1,4,'Gartenzwerg','Klein und b√§rtig.',212,1372583994,0,0,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,'a:7:{s:16:\"sys_language_uid\";N;s:6:\"hidden\";N;s:4:\"name\";N;s:11:\"description\";N;s:8:\"quantity\";N;s:9:\"starttime\";N;s:7:\"endtime\";N;}'),(2,4,'Rasenm√§her','Gro√ü und laut.',5,1372584028,1372584028,1,0,0,0,0,0,0,0,'',0,0,0,0,0,0,0,0,'a:7:{s:16:\"sys_language_uid\";N;s:6:\"hidden\";N;s:4:\"name\";N;s:11:\"description\";N;s:8:\"quantity\";N;s:9:\"starttime\";N;s:7:\"endtime\";N;}');
+/*!40000 ALTER TABLE `tx_inventory_domain_model_product` ENABLE KEYS */;
+UNLOCK TABLES;
+DROP TABLE IF EXISTS `tx_phpunit_test`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tx_phpunit_test` (
+  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(11) unsigned NOT NULL DEFAULT '0',
+  `tstamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `crdate` int(11) unsigned NOT NULL DEFAULT '0',
+  `cruser_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `sorting` int(11) unsigned NOT NULL DEFAULT '0',
+  `deleted` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `is_dummy_record` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `hidden` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `starttime` int(11) unsigned NOT NULL DEFAULT '0',
+  `endtime` int(11) unsigned NOT NULL DEFAULT '0',
+  `title` tinytext COLLATE utf8_unicode_ci,
+  `related_records` int(11) unsigned NOT NULL DEFAULT '0',
+  `bidirectional` int(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`),
+  KEY `phpunit_dummy` (`is_dummy_record`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `tx_phpunit_test` WRITE;
+/*!40000 ALTER TABLE `tx_phpunit_test` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_phpunit_test` ENABLE KEYS */;
+UNLOCK TABLES;
+DROP TABLE IF EXISTS `tx_phpunit_test_article_mm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tx_phpunit_test_article_mm` (
+  `uid_local` int(11) unsigned NOT NULL DEFAULT '0',
+  `uid_foreign` int(11) unsigned NOT NULL DEFAULT '0',
+  `sorting` int(11) unsigned NOT NULL DEFAULT '0',
+  `is_dummy_record` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  KEY `uid_local` (`uid_local`),
+  KEY `uid_foreign` (`uid_foreign`),
+  KEY `phpunit_dummy` (`is_dummy_record`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `tx_phpunit_test_article_mm` WRITE;
+/*!40000 ALTER TABLE `tx_phpunit_test_article_mm` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_phpunit_test_article_mm` ENABLE KEYS */;
+UNLOCK TABLES;
+DROP TABLE IF EXISTS `tx_phpunit_testchild`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tx_phpunit_testchild` (
+  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(11) unsigned NOT NULL DEFAULT '0',
+  `tstamp` int(11) unsigned NOT NULL DEFAULT '0',
+  `crdate` int(11) unsigned NOT NULL DEFAULT '0',
+  `cruser_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `sorting` int(11) unsigned NOT NULL DEFAULT '0',
+  `deleted` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `is_dummy_record` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`uid`),
+  KEY `parent` (`pid`),
+  KEY `phpunit_dummy` (`is_dummy_record`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `tx_phpunit_testchild` WRITE;
+/*!40000 ALTER TABLE `tx_phpunit_testchild` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tx_phpunit_testchild` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `tx_rsaauth_keys`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
