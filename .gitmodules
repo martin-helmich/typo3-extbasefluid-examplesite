@@ -13,3 +13,6 @@
 [submodule "html/typo3conf/ext/extension_builder"]
 	path = html/typo3conf/ext/extension_builder
 	url = git://git.typo3.org/TYPO3v4/Extensions/extension_builder.git
+[submodule "html/typo3conf/ext/sjr_offers"]
+	path = html/typo3conf/ext/sjr_offers
+	url = ssh://bitbucket.org/martin-helmich/typo3-sjroffers.git
