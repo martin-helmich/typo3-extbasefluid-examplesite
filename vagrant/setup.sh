@@ -1,7 +1,7 @@
 #!/bin/bash
 
 APACHE_PACKAGES="apache2"
-PHP_PACKAGES="php5 libapache2-mod-php5 php5-curl php5-gd php5-tidy php5-imagick php5-mcrypt php5-xdebug php5-mysqlnd"
+PHP_PACKAGES="php5 libapache2-mod-php5 php5-curl php5-gd php5-tidy php5-imagick php5-mcrypt php5-xdebug php5-mysqlnd php-apc"
 MYSQL_PACKAGES="mysql-server mysql-client"
 
 debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password password supersecret'
