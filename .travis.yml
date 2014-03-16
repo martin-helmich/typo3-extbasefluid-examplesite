@@ -4,8 +4,8 @@ php:
   - 5.4
   - 5.3
 env:
+  - TYPO3_VERSION=TYPO3_6-2-0beta6
   - TYPO3_VERSION=TYPO3_6-2-0beta7
-  - TYPO3_VERSION=TYPO3_6-2
   - TYPO3_VERSION=master
 services:
   - mysql
@@ -13,6 +13,6 @@ before_script:
   - mysql -e 'CREATE DATABASE typo3;'
   - mysql typo3 < vagrant/setup.sql
   - php build/set-travis-dbcredentials.php
-  - cd html/typo3_src && git checkout ${TYPO3_VERSION}
+  - cd ${TRAVIS_BUILD_DIR}/html/typo3_src && git checkout ${TYPO3_VERSION}
 script:
-  - cd html && php typo3/cli_dispatch.phpsh phpunit typo3conf/ext/sjr_offers/Tests
+  - cd ${TRAVIS_BUILD_DIR}/html && php typo3/cli_dispatch.phpsh phpunit typo3conf/ext/sjr_offers/Tests
