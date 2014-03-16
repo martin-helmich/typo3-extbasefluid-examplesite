@@ -9,10 +9,10 @@
 	url = git://github.com/etobi/ext-coreapi.git
 [submodule "html/typo3conf/ext/blog_example"]
 	path = html/typo3conf/ext/blog_example
-	url = git://git.typo3.org/TYPO3CMS/CoreProjects/MVC/blog_example.git
+	url = git://github.com/martin-helmich/typo3-blogexample.git
 [submodule "html/typo3conf/ext/extension_builder"]
 	path = html/typo3conf/ext/extension_builder
 	url = git://git.typo3.org/TYPO3CMS/Extensions/extension_builder.git
 [submodule "html/typo3conf/ext/sjr_offers"]
 	path = html/typo3conf/ext/sjr_offers
-	url = ssh://github.com/martin-helmich/typo3-sjroffers.git
+	url = git://github.com/martin-helmich/typo3-sjroffers.git
