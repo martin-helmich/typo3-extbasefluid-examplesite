@@ -10,7 +10,7 @@ published by O'Reilly.
 
 This site contains two TYPO3 extensions based on Extbase:
 
-- [inventory](html/typo3conf/inventory) is a simple extension that demonstrates
+- [inventory](html/typo3conf/ext/inventory) is a simple extension that demonstrates
   the use of the *extension_builder* extension.
 - [sjr_offers](https://github.com/martin-helmich/typo3-sjroffers) is a real-life
   extension that demonstrates the more advanced concepts of Extbase extension
