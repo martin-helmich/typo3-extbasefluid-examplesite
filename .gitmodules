@@ -15,4 +15,4 @@
 	url = git://git.typo3.org/TYPO3CMS/Extensions/extension_builder.git
 [submodule "html/typo3conf/ext/sjr_offers"]
 	path = html/typo3conf/ext/sjr_offers
-	url = ssh://bitbucket.org/martin-helmich/typo3-sjroffers.git
+	url = ssh://github.com/martin-helmich/typo3-sjroffers.git
