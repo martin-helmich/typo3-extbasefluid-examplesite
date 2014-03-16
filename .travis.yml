@@ -11,7 +11,7 @@ services:
   - mysql
 before_script:
   - mysql -e 'CREATE DATABASE typo3;'
-  - mysql < vagrant/setup.sql
+  - mysql typo3 < vagrant/setup.sql
   - php build/set-travis-dbcredentials.php
   - cd html/typo3_src && git checkout ${TYPO3_VERSION}
 script:
